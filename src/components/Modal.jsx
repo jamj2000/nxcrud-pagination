@@ -8,7 +8,6 @@ function Modal({ children, icono, texto, className }) {
 
     const dialogRef = useRef(null);
 
-
     const openDialog = () => {
         if (dialogRef.current) dialogRef.current.showModal();
     };

@@ -26,8 +26,6 @@ export default function Filtrar({ totalPages, query, sort, page }) {
     }
 
 
-
-
     return (
         // <form action={action} className="flex flex-col gap-4">
         <>
@@ -95,7 +93,7 @@ export default function Filtrar({ totalPages, query, sort, page }) {
 
                     <button
                         disabled={page <= 1}                        
-                        onClick={() => { document.getElementById('page').value = +page - 1; updatePage({ query, sort, page: +page - 1 }) }}
+                        onClick={() => { document.getElementById('page').value = +page - 1 }}
                         className={`flex gap-1 items-center rounded-full text-white bg-blue-500 hover:bg-blue-700 disabled:bg-slate-300`}
                     >
                         <CircleChevronLeft className="size-10" />
@@ -116,7 +114,7 @@ export default function Filtrar({ totalPages, query, sort, page }) {
 
                     <button
                         disabled={page >= totalPages}                        
-                        onClick={() => { document.getElementById('page').value = +page + 1; updatePage({ query, sort, page: +page + 1 }) }}
+                        onClick={() => { document.getElementById('page').value = +page + 1 }}
                         className={`flex gap-1 items-center rounded-full text-white bg-blue-500 hover:bg-blue-700 disabled:bg-slate-300`}
                     >
                         <CircleChevronRight className="size-10" />
@@ -130,7 +128,7 @@ export default function Filtrar({ totalPages, query, sort, page }) {
                             <button
                                 key={i}
                                 onMouseDown={(e) => e.target.classList.replace('bg-blue-100', 'bg-blue-300')}
-                                onClick={() => { document.getElementById('page').value = i + 1; updatePage({ query, sort, page: i + 1 }) }}
+                                onClick={() => { document.getElementById('page').value = i + 1 }}
                                 className={`inline shrink-0 w-16 h-8 border bg-blue-100 border-slate-100 hover:bg-blue-300 ${page == i + 1 && 'bg-blue-400 font-bold text-white'}`}
                             >
                                 {i + 1}
