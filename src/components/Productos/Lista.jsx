@@ -4,6 +4,7 @@ import ProductoX from '@/components/Producto/X';
 import { obtenerProductos } from '@/lib/data'
 
 
+
 async function Productos({ query, sort, page }) {
 
     const { productos, totalPages } = await obtenerProductos(query, sort, page)
@@ -17,8 +18,6 @@ async function Productos({ query, sort, page }) {
 
             {productos.map(producto => <ProductoX key={producto.id} producto={producto} />)}
         </div>
-
-
     )
 }
 
