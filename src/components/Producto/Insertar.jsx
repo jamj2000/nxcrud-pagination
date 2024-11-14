@@ -3,6 +3,7 @@ import { nuevoProducto } from '@/lib/actions'
 import { useActionState, useEffect } from 'react'
 import { CircleCheck, CircleX, Plus, RefreshCcw } from 'lucide-react';
 import { toast } from 'sonner';
+import Image from 'next/image';
 
 
 export default function ProductoInsertar() {
@@ -23,7 +24,7 @@ export default function ProductoInsertar() {
     return (
         <form id='form' action={action} >
             <h1 className='text-green-700 text-xl font-bold text-center'>Crear nuevo producto</h1>
-            
+
             {state?.success &&
                 <p className='bg-green-100 text-green-700 mb-2 p-3 rounded-md flex gap-2 items-center animate-hide'>  {/* consultar archivo tailwind.config.js */}
                     <CircleCheck /> {state?.success}
@@ -70,6 +71,15 @@ export default function ProductoInsertar() {
                     required
                 />
 
+                <Image src={'/images/no-image.png'} alt="" width={400} height={400} className='mx-auto md:col-span-2 w-[400px] h-[300px] object-cover' />
+                <input
+                    type="hidden"
+                    id="imagen"
+                    name="imagen"
+                    defaultValue={'/images/no-image.png'}
+                    disabled={pending}
+                />
+
                 <label htmlFor="file"> Nueva imagen </label>
                 <input
                     type="file"
@@ -77,7 +87,7 @@ export default function ProductoInsertar() {
                     name="file"
                     accept="image/*"
                     className='bg-zinc-100 p-2 rounded hover:ring-1 focus:outline-none disabled:bg-zinc-400 disabled:text-zinc-200'
-                    disabled={pending}                    
+                    disabled={pending}
                 />
 
                 <button type="submit" disabled={pending}

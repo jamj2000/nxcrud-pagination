@@ -30,7 +30,7 @@ function ProductoVer({ producto }) {
                 <p className="text-6xl place-self-center">{producto.nombre}</p>
                 <p className="text-2xl place-self-center text-slate-400">{producto.descripcion}</p>
 
-                <Image src={producto.imagen || '/images/no-image.png'} alt="" width={400} height={400} className='w-[400px] object-cover' />
+                <Image src={producto.imagen || '/images/no-image.png'} alt="" width={400} height={400} className='w-[400px] h-[300px] object-cover' />
 
                 <p className="text-7xl place-self-center text-blue-400 *:font-bold">{producto.precio} €</p>
             </div>
