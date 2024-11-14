@@ -17,16 +17,16 @@ export async function nuevoProducto(prevState, formData) {
 
     try {
         if (file.size > 0) {
+            imagen = '/images/' + file.name
             const buffer = await file.arrayBuffer()
             const bytes = new Uint8Array(buffer)
-            fs.writeFileSync('public/images/' + file.name, bytes, 'binary')
-            imagen = file.name
+            fs.writeFileSync('public' + imagen, bytes, 'binary')
         } else {
-            imagen = 'logo-gray.png'
+            imagen = '/images/no-image.png'
         }
 
         const sql = 'insert into productos (nombre, descripcion, precio, imagen) values (?, ?, ?, ?);'
-        const values = [nombre, descripcion, precio, '/images/' + imagen];
+        const values = [nombre, descripcion, precio, imagen];
 
         const [result, fields] = await mysql.query(sql, values)
 
@@ -44,7 +44,6 @@ export async function modificarProducto(prevState, formData) {
     const precio = +formData.get('precio')
     const file = formData.get('file')
     let imagen = formData.get('imagen')
-    console.log('IMAGEN ', imagen);
 
     // Introducimos retardo artificial
     // await new Promise((resolve) => setTimeout(resolve, 1000))
@@ -52,12 +51,12 @@ export async function modificarProducto(prevState, formData) {
 
     try {
         if (file.size > 0) {
+            imagen = '/images/' + file.name
             const buffer = await file.arrayBuffer()
             const bytes = new Uint8Array(buffer)
-            fs.writeFileSync('public/images/' + file.name, bytes, 'binary')
-            imagen = '/images/' + file.name
+            fs.writeFileSync('public' + imagen, bytes, 'binary')
         } else if (!imagen) {
-            imagen = '/images/logo-gray.png'
+            imagen = '/images/no-image.png'
         }
 
         const sql = 'update productos set nombre = ?, descripcion = ?, precio = ?, imagen = ? where id = ?'

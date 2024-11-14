@@ -73,7 +73,7 @@ export default function ProductoEliminar({ producto = {} }) {
                     required
                 />
 
-                <Image src={producto.imagen} alt="" width={1060} height={706} className='mx-auto md:col-span-2 w-[400px]' />
+                <Image src={producto.imagen || '/images/no-image.png'} alt="" width={1060} height={706} className='mx-auto md:col-span-2 w-[400px]' />
                 <input
                     type="hidden"
                     id="imagen"

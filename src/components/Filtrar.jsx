@@ -1,11 +1,10 @@
 'use client'
 import { useRouter, usePathname } from 'next/navigation'
-import { ArrowDownAZ, ArrowDownZA, CircleChevronLeft, CircleChevronRight, ClockArrowDown, ClockArrowUp, RefreshCcw } from "lucide-react";
+import { ArrowDownAZ, ArrowDownZA, CircleChevronLeft, CircleChevronRight, ClockArrowDown, ClockArrowUp, RefreshCcw, Search } from "lucide-react";
 import { useFormStatus } from 'react-dom'
 
 
 const classSort = "size-10 p-2 text-white rounded-full bg-blue-100 hover:cursor-pointer hover:bg-blue-300 peer-checked:bg-blue-400 peer-checked:duration-[1s]"
-const classSearch = "text-black p-2 pl-10 rounded-full bg-[url('/icons/search.svg')] bg-[length:16px_16px] bg-[center_left_10px] bg-no-repeat border-2 border-blue-400 focus:outline-blue-500"
 
 
 export default function Filtrar({ totalPages, query, sort, page }) {
@@ -27,7 +26,6 @@ export default function Filtrar({ totalPages, query, sort, page }) {
 
 
     return (
-        // <form action={action} className="flex flex-col gap-4">
         <>
             <div className="flex justify-end items-center gap-1 mb-10">
                 {/* Ordenar */}
@@ -77,13 +75,16 @@ export default function Filtrar({ totalPages, query, sort, page }) {
                 </label>
 
                 {/* Buscar */}
-                <input
-                    type='search' name="query"
-                    placeholder="Buscar ..."
-                    onChange={(e) => updatePage({ query: e.target.value })}
-                    defaultValue={query}
-                    className={classSearch}
-                />
+                <label title="BUSCAR..." className='relative flex items-center'>
+                    <input
+                        type='search' name="query"
+                        placeholder="Buscar ..."
+                        onChange={(e) => updatePage({ query: e.target.value })}
+                        defaultValue={query}
+                        className='peer text-black p-2 pl-10 rounded-full  border-2 border-blue-400 focus:outline-blue-500'
+                    />
+                    <Search className="absolute left-3 text-blue-700 size-4"  />
+                </label>
             </div>
 
 
@@ -92,7 +93,7 @@ export default function Filtrar({ totalPages, query, sort, page }) {
                 <div className="flex justify-between items-center rounded-full border border-slate-200 bg-blue-400">
 
                     <button
-                        disabled={page <= 1}                        
+                        disabled={page <= 1}
                         onClick={() => { document.getElementById('page').value = +page - 1 }}
                         className={`flex gap-1 items-center rounded-full text-white bg-blue-500 hover:bg-blue-700 disabled:bg-slate-300`}
                     >
@@ -102,7 +103,7 @@ export default function Filtrar({ totalPages, query, sort, page }) {
                     <div>
                         {pending
                             ? <RefreshCcw className='w-14 inline text-white animate-spin self-center' />
-                            : <input 
+                            : <input
                                 id='page'
                                 name="page"
                                 value={page}
@@ -113,7 +114,7 @@ export default function Filtrar({ totalPages, query, sort, page }) {
                     </div>
 
                     <button
-                        disabled={page >= totalPages}                        
+                        disabled={page >= totalPages}
                         onClick={() => { document.getElementById('page').value = +page + 1 }}
                         className={`flex gap-1 items-center rounded-full text-white bg-blue-500 hover:bg-blue-700 disabled:bg-slate-300`}
                     >
@@ -139,8 +140,6 @@ export default function Filtrar({ totalPages, query, sort, page }) {
                 </div>
             </div>
         </>
-        // </form>
-
     );
 }
 
