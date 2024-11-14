@@ -28,7 +28,8 @@ export default function Filtrar({ totalPages, query, sort, page }) {
     return (
         <>
             <div className="flex justify-end items-center gap-1 mb-10">
-                {/* Ordenar */}
+
+                {/* ---------- Ordenar ---------- */}
 
                 <label title="NOMBRE A->Z">
                     <input
@@ -74,7 +75,8 @@ export default function Filtrar({ totalPages, query, sort, page }) {
                     <ClockArrowUp className={classSort} />
                 </label>
 
-                {/* Buscar */}
+                {/* ---------- Buscar ---------- */}
+
                 <label title="BUSCAR..." className='relative flex items-center'>
                     <input
                         type='search' name="query"
@@ -88,7 +90,8 @@ export default function Filtrar({ totalPages, query, sort, page }) {
             </div>
 
 
-            {/* Paginar */}
+            {/* ---------- Paginar ---------- */}
+            
             <div>
                 <div className="flex justify-between items-center rounded-full border border-slate-200 bg-blue-400">
 
@@ -122,7 +125,8 @@ export default function Filtrar({ totalPages, query, sort, page }) {
                     </button>
                 </div>
 
-                {/* Lista de páginas */}
+                {/* ---------- Lista de páginas ---------- */}
+                
                 <div className="flex flex-nowrap mb-1 overflow-x-auto mx-10">
                     {
                         [...Array(totalPages).keys()].map(i =>

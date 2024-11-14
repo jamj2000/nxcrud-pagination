@@ -5,7 +5,7 @@ import { Plus } from 'lucide-react'
 import { redirect } from 'next/navigation'
 
 import Modal from '@/components/Modal'
-import Productos from '@/components/Productos'
+import ProductosLista from '@/components/Productos/Lista'
 import ProductoInsertar from '@/components/Producto/Insertar'
 
 
@@ -43,7 +43,7 @@ async function PaginaInicio({ searchParams }) {
           Obteniendo productos ...
         </div>
       }>
-        <Productos query={query} sort={sort} page={page} />
+        <ProductosLista query={query} sort={sort} page={page} />
       </Suspense>
 
     </div>
