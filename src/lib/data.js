@@ -7,7 +7,7 @@ const PER_PAGE = 5
 
 export async function obtenerProductos(query, sort, page) {
     // Introducimos un retardo artificial
-    // await new Promise(resolve => setTimeout(resolve, 1000))
+    await new Promise(resolve => setTimeout(resolve, 2000))
 
     const like = '%' + query + '%'
     const limit = PER_PAGE

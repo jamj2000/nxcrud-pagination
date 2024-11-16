@@ -2,6 +2,7 @@
 import { useRouter, usePathname } from 'next/navigation'
 import { ArrowDownAZ, ArrowDownZA, CircleChevronLeft, CircleChevronRight, ClockArrowDown, ClockArrowUp, RefreshCcw, Search } from "lucide-react";
 import { useFormStatus } from 'react-dom'
+import { useDebouncedCallback } from "use-debounce";
 
 
 const classSort = "size-10 p-2 text-white rounded-full bg-blue-100 hover:cursor-pointer hover:bg-blue-300 peer-checked:bg-blue-400 peer-checked:duration-[1s]"
@@ -23,6 +24,8 @@ export default function Filtrar({ totalPages, query, sort, page }) {
 
         router.replace(pathname + '?' + params.toString());
     }
+
+    const debounce = useDebouncedCallback((e) => updatePage({ query: e.target.value }), 500)
 
 
     return (
@@ -81,17 +84,18 @@ export default function Filtrar({ totalPages, query, sort, page }) {
                     <input
                         type='search' name="query"
                         placeholder="Buscar ..."
-                        onChange={(e) => updatePage({ query: e.target.value })}
+                        // onChange={(e) => updatePage({ query: e.target.value })}
+                        onChange={debounce}
                         defaultValue={query}
                         className='peer text-black p-2 pl-10 rounded-full  border-2 border-blue-400 focus:outline-blue-500'
                     />
-                    <Search className="absolute left-3 text-blue-700 size-4"  />
+                    <Search className="absolute left-3 text-blue-700 size-4" />
                 </label>
             </div>
 
 
             {/* ---------- Paginar ---------- */}
-            
+
             <div>
                 <div className="flex justify-between items-center rounded-full border border-slate-200 bg-blue-400">
 
@@ -126,7 +130,7 @@ export default function Filtrar({ totalPages, query, sort, page }) {
                 </div>
 
                 {/* ---------- Lista de páginas ---------- */}
-                
+
                 <div className="flex flex-nowrap mb-1 overflow-x-auto mx-10">
                     {
                         [...Array(totalPages).keys()].map(i =>
