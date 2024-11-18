@@ -8,24 +8,25 @@ import { useDebouncedCallback } from "use-debounce";
 const classSort = "size-10 p-2 text-white rounded-full bg-blue-100 hover:cursor-pointer hover:bg-blue-300 peer-checked:bg-blue-400 peer-checked:duration-[1s]"
 
 
-export default function Filtrar({ totalPages, query, sort, page }) {
+export default function Filtrar({ totalPages, query, sort, page, per_page }) {
 
     const router = useRouter()
     const pathname = usePathname()
     const { pending } = useFormStatus()
 
 
-    function updatePage({ query, sort, page }) {
+    function updatePage({ query, sort, page, per_page }) {
         const params = new URLSearchParams()
 
         params.set('query', query ?? '')
         params.set('sort', sort ?? 'createdAt desc')
         params.set('page', page ?? 1)
+        params.set('per_page', per_page ?? 5)
 
         router.replace(pathname + '?' + params.toString());
     }
 
-    const debounce = useDebouncedCallback((e) => updatePage({ query: e.target.value }), 500)
+    const debounce = useDebouncedCallback((e) => updatePage({ query: e.target.value, sort, per_page }), 500)
 
 
     return (
@@ -39,7 +40,7 @@ export default function Filtrar({ totalPages, query, sort, page }) {
                         type="radio" name="sort"
                         value='nombre asc'
                         checked={sort == 'nombre asc'}
-                        onChange={(e) => updatePage({ query, page, sort: e.target.value })}
+                        onChange={(e) => updatePage({ query, page, per_page, sort: e.target.value })}
                         className="hidden peer"
                     />
                     <ArrowDownAZ className={classSort} />
@@ -50,29 +51,29 @@ export default function Filtrar({ totalPages, query, sort, page }) {
                         type="radio" name="sort"
                         value='nombre desc'
                         checked={sort == 'nombre desc'}
-                        onChange={(e) => updatePage({ query, page, sort: e.target.value })}
+                        onChange={(e) => updatePage({ query, page, per_page, sort: e.target.value })}
                         className="hidden peer"
                     />
                     <ArrowDownZA className={classSort} />
                 </label>
 
-                <label title="CREADO 0->9">
+                <label title="TIEMPO ADELANTE">
                     <input
                         type="radio" name="sort"
                         value='createdAt asc'
                         checked={sort == 'createdAt asc'}
-                        onChange={(e) => updatePage({ query, page, sort: e.target.value })}
+                        onChange={(e) => updatePage({ query, page, per_page, sort: e.target.value })}
                         className="hidden peer"
                     />
                     <ClockArrowDown className={classSort} />
                 </label>
 
-                <label title="CREADO 9->0">
+                <label title="TIEMPO ATRÁS">
                     <input
                         type="radio" name="sort"
                         value='createdAt desc'
                         checked={sort == 'createdAt desc'}
-                        onChange={(e) => updatePage({ query, page, sort: e.target.value })}
+                        onChange={(e) => updatePage({ query, page, per_page, sort: e.target.value })}
                         className="hidden peer"
                     />
                     <ClockArrowUp className={classSort} />
@@ -95,6 +96,16 @@ export default function Filtrar({ totalPages, query, sort, page }) {
 
 
             {/* ---------- Paginar ---------- */}
+
+            <div className="flex gap-4 justify-end items-center">
+                <select name="per_page" value={per_page}
+                    onChange={(e) => updatePage({ query, page, sort, per_page: e.target.value })}
+                    className="py-2 px-4 bg-blue-100 w-fit text-right rounded-md focus:outline-none">
+                    <option value={5}> 5 items por página </option>
+                    <option value={10}> 10 items por página </option>
+                    <option value={15}> 15 items por página </option>
+                </select>
+            </div>
 
             <div>
                 <div className="flex justify-between items-center rounded-full border border-slate-200 bg-blue-400">

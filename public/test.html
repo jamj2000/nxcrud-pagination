@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing GET & POST form methods</title>
+</head>
+
+<body>
+    <h1>GET</h1>
+    <form action="http://localhost:3000/productos">
+        <label>query: <input type="text" name="query" value="monitor"></label><br />
+        <label>sort: <input type="text" name="sort" value="nombre asc"></label><br />
+        <label>page: <input type="text" name="page" value="2"></label><br />
+
+        <button>ENVIAR</button>
+    </form>
+
+    <!--
+    <h1>POST</h1>
+    <form method='POST' action="http://localhost:3000/productos?query=&sort=createdAt+desc&page=1">
+        <label>nombre: <input type="text" name="1_nombre" value="Nuevo artículo"></label><br/>
+        <label>descripcion: <input type="text" name="1_descripcion" value="Artículo de prueba"></label><br/>
+        <label>precio: <input type="text" name="1_precio" value="99.99"></label><br/>
+
+        <input type="hidden" name="1_$ACTION_REF_1">        
+        <input type="hidden" name="1_$ACTION_1:0" value='{"id":"6057c724c9a021ca118a548c77b016416da7f781e3","bound":"$@1"}'>
+        <input type="hidden" name="1_$ACTION_KEY" value="k2499292854">
+        <input type="hidden" name="1_$ACTION_1:1" value="[null]">
+        <input type="hidden" name="1_imagen" value="/images/no-image.png">
+        <input type="hidden" name="1_file" >
+        <input type="hidden" name="0" value='[null,"$K1"]'>
+
+        <button>ENVIAR</button>
+    </form> -->
+
+</body>
+
+</html>

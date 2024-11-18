@@ -1,17 +1,15 @@
 'use server'
 import { pool } from '@/lib/mysql'
 
-const PER_PAGE = 5
 
-
-
-export async function obtenerProductos(query, sort, page) {
+export async function obtenerProductos({query, sort, page, per_page=5}) {
     // Introducimos un retardo artificial
-    await new Promise(resolve => setTimeout(resolve, 2000))
+    // await new Promise(resolve => setTimeout(resolve, 1000))
 
     const like = '%' + query + '%'
-    const limit = PER_PAGE
-    const offset = (page - 1) * PER_PAGE
+    // const limit = PER_PAGE
+    const limit = per_page
+    const offset = (page - 1) * per_page
 
     const sqlTotal = 'select count(*) as total from productos where nombre like ?';
     const sql = 'select * from productos where nombre like ? order by ' + sort + ' limit ? offset ?'
@@ -23,7 +21,7 @@ export async function obtenerProductos(query, sort, page) {
     const [productos] = await pool.execute(sql, values);
     connection.release();
 
-    const totalPages = Math.ceil(total / PER_PAGE)
+    const totalPages = Math.ceil(total / per_page)
 
 
     return { productos, totalPages }

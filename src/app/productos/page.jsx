@@ -15,12 +15,13 @@ async function PaginaInicio({ searchParams }) {
   // Introducimos un retardo artificial
   // await new Promise(resolve => setTimeout(resolve, 2000))
 
-  let { query, sort, page } = await searchParams
+  let { query, sort, page, per_page } = await searchParams
 
   // controlamos valores undefined
   query ??= ''
   sort ??= 'createdAt desc'
   page ??= 1
+  per_page ??= 5
 
   // controlamos valor 0 o negativos en page
   if (Number(page) < 1) redirect('/productos?' + new URLSearchParams({ query, sort, page: 1}))
@@ -43,7 +44,7 @@ async function PaginaInicio({ searchParams }) {
           Obteniendo productos ...
         </div>
       }>
-        <ProductosLista query={query} sort={sort} page={page} />
+        <ProductosLista query={query} sort={sort} page={page} per_page={per_page} />
       </Suspense>
 
     </div>
