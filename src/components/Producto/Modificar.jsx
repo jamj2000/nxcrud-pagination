@@ -1,5 +1,5 @@
 'use client'
-import { useActionState, useEffect } from 'react'
+import { useActionState, useEffect, useId } from 'react'
 import { CircleCheck, CircleX, Pencil, RefreshCcw } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -9,21 +9,21 @@ import Image from 'next/image';
 
 
 export default function ProductoModificar({ producto = {} }) {
-
+    const formId = useId()
     const [state, action, pending] = useActionState(modificarProducto, null)
 
     useEffect(() => {
         if (state?.success) {
             toast.success(state.success)
-            document.getElementById('form-2').closest('dialog')?.close() // Si el padre es un dialog, lo cerramos
+            document.getElementById(formId).closest('dialog')?.close() // Si el padre es un dialog, lo cerramos
         }
         if (state?.error) toast.error(state.error)
 
-    }, [state])
+    }, [formId, state])
 
 
     return (
-        <form id='form-2' action={action} >
+        <form id={formId} action={action} >
             {state?.success &&
                 <p className='bg-green-100 text-green-700 mb-2 p-3 rounded-md flex gap-2 items-center animate-hide'>  {/* consultar archivo tailwind.config.js */}
                     <CircleCheck /> {state?.success}

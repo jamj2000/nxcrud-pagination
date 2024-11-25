@@ -1,28 +1,28 @@
 'use client'
 import { nuevoProducto } from '@/lib/actions'
-import { useActionState, useEffect } from 'react'
+import { useActionState, useEffect, useId } from 'react'
 import { CircleCheck, CircleX, Plus, RefreshCcw } from 'lucide-react';
 import { toast } from 'sonner';
 import Image from 'next/image';
 
 
 export default function ProductoInsertar() {
-
+    const formId = useId()
     const [state, action, pending] = useActionState(nuevoProducto, null)
 
 
     useEffect(() => {
         if (state?.success) {
             toast.success(state.success)
-            document.getElementById('form').closest('dialog')?.close() // Si el padre es un dialog, lo cerramos
+            document.getElementById(formId).closest('dialog')?.close() // Si el padre es un dialog, lo cerramos
         }
         if (state?.error) toast.error(state.error)
 
-    }, [state])
+    }, [formId, state])
 
 
     return (
-        <form id='form' action={action} >
+        <form id={formId} action={action} >
             <h1 className='text-green-700 text-xl font-bold text-center'>Crear nuevo producto</h1>
 
             {state?.success &&
