@@ -1,5 +1,5 @@
 'use client'
-import {  useRef } from 'react'
+import { useRef } from 'react'
 // https://medium.com/@bomber.marek/how-to-use-dialog-in-react-easy-modals-tooltips-81e44d570c8a
 
 
@@ -20,9 +20,9 @@ function Modal({ children, icono, texto, className }) {
         if (dialogRef.current)
             dialogRef.current.addEventListener('click', function (e) {
                 const rect = dialogRef.current.getBoundingClientRect();
-                const isInDialog = (rect.top <= e.clientY 
-                    && e.clientY <= rect.top + rect.height 
-                    && rect.left <= e.clientX 
+                const isInDialog = (rect.top <= e.clientY
+                    && e.clientY <= rect.top + rect.height
+                    && rect.left <= e.clientX
                     && e.clientX <= rect.left + rect.width);
                 if (!isInDialog) {
                     dialogRef.current.close();
@@ -39,8 +39,8 @@ function Modal({ children, icono, texto, className }) {
 
             <dialog ref={dialogRef} onClick={handleClickOutside}
                 className={`backdrop:bg-black/50 backdrop:backdrop-blur-sm py-12 px-2 md:px-8 rounded-md 
-                         fixed top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] 
-                         w-full mt-0 outline-none`}>
+                             fixed top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] 
+                             w-full mt-0 outline-none`}>
 
                 {children}
 
@@ -48,10 +48,10 @@ function Modal({ children, icono, texto, className }) {
                     ❌
                 </div>
             </dialog>
-
-
         </>
     );
 };
+
+
 
 export default Modal;
