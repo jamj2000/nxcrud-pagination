@@ -1,6 +1,6 @@
 'use client'
 import { useActionState, useEffect, useId } from 'react'
-import { CircleCheck, CircleX, Pencil, RefreshCcw } from 'lucide-react';
+import { CircleCheck, CircleX, Pencil, RefreshCw } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { modificarProducto } from '@/lib/actions'
@@ -99,7 +99,7 @@ export default function ProductoModificar({ producto = {} }) {
                     className='md:col-span-2 mt-6 w-full p-3 bg-orange-700 text-white disabled:bg-zinc-400 font-bold text-center rounded-md'
                 >
                     {pending
-                        ? <div><RefreshCcw className='inline animate-spin' /> Actualizando...</div>
+                        ? <div><RefreshCw className='inline animate-spin' /> Actualizando...</div>
                         : <div><Pencil className='inline' /> Actualizar</div>
 
                     }

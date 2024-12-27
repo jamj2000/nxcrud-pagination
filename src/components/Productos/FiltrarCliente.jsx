@@ -1,6 +1,6 @@
 'use client'
 import { useRouter, usePathname } from 'next/navigation'
-import { ArrowDownAZ, ArrowDownZA, CircleChevronLeft, CircleChevronRight, ClockArrowDown, ClockArrowUp, RefreshCcw, Search } from "lucide-react";
+import { ArrowDownAZ, ArrowDownZA, CircleChevronLeft, CircleChevronRight, ClockArrowDown, ClockArrowUp, RefreshCw, Search } from "lucide-react";
 import { useFormStatus } from 'react-dom'
 import { useDebouncedCallback } from "use-debounce";
 
@@ -120,7 +120,7 @@ export default function Filtrar({ totalPages, query, sort, page, per_page }) {
 
                     <div>
                         {pending
-                            ? <RefreshCcw className='w-14 inline text-white animate-spin self-center' />
+                            ? <RefreshCw className='w-14 inline text-white animate-spin self-center' />
                             : <input
                                 id='page'
                                 name="page"

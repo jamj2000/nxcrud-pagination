@@ -1,6 +1,6 @@
 'use server'
 import fs from 'node:fs'
-import mysql, {pool} from '@/lib/mysql'
+import mysql, { pool } from '@/lib/mysql'
 import { revalidatePath } from 'next/cache';
 
 
@@ -13,7 +13,7 @@ export async function nuevoProducto(prevState, formData) {
     let imagen
 
     // Introducimos retardo artificial
-    // await new Promise((resolve) => setTimeout(resolve, 1000))
+    await new Promise((resolve) => setTimeout(resolve, 2000))
 
     try {
         if (file.size > 0) {

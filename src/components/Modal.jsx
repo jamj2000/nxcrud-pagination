@@ -16,7 +16,7 @@ function Modal({ children, icono, texto, className }) {
         if (dialogRef.current) dialogRef.current.close();
     };
 
-    const handleClickOutside = () => {
+    const handleClickOutside = (e) => {
         if (dialogRef.current)
             dialogRef.current.addEventListener('click', function (e) {
                 const rect = dialogRef.current.getBoundingClientRect();
@@ -37,10 +37,9 @@ function Modal({ children, icono, texto, className }) {
                 {icono} {texto}
             </div>
 
-            <dialog ref={dialogRef} onClick={handleClickOutside}
-                className={`backdrop:bg-black/50 backdrop:backdrop-blur-sm py-12 px-2 md:px-8 rounded-md 
-                             fixed top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] 
-                             w-full mt-0 outline-none`}>
+
+            <dialog ref={dialogRef} onMouseDown={handleClickOutside}
+                className="backdrop:bg-black/50 backdrop:backdrop-blur-sm py-12 px-2 md:px-8 rounded-md outline-none">
 
                 {children}
 

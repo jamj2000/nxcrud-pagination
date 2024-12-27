@@ -1,7 +1,7 @@
 'use client'
 import { eliminarProducto } from '@/lib/actions'
 import { useActionState, useEffect, useId } from 'react'
-import { CircleCheck, CircleX, RefreshCcw, Trash } from 'lucide-react';
+import { CircleCheck, CircleX, RefreshCw, Trash } from 'lucide-react';
 import { toast } from 'sonner';
 import Image from 'next/image';
 
@@ -86,7 +86,7 @@ export default function ProductoEliminar({ producto = {} }) {
                     className='md:col-span-2 mt-6 w-full p-3 bg-red-700 text-white disabled:bg-zinc-400 font-bold text-center rounded-md'
                 >
                     {pending
-                        ? <div><RefreshCcw className='inline animate-spin' /> Eliminado...</div>
+                        ? <div><RefreshCw className='inline animate-spin' /> Eliminado...</div>
                         : <div><Trash className='inline' /> Eliminar</div>
 
                     }

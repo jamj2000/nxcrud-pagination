@@ -1,14 +1,16 @@
 'use client'
 import { nuevoProducto } from '@/lib/actions'
 import { useActionState, useEffect, useId } from 'react'
-import { CircleCheck, CircleX, Plus, RefreshCcw } from 'lucide-react';
+import { CircleCheck, CircleX, Plus, RefreshCw } from 'lucide-react';
 import { toast } from 'sonner';
 import Image from 'next/image';
 
 
+
+
 export default function ProductoInsertar() {
     const formId = useId()
-    const [state, action, pending] = useActionState(nuevoProducto, null)
+    const [state, action, pending] = useActionState(nuevoProducto, '')
 
 
     useEffect(() => {
@@ -94,7 +96,7 @@ export default function ProductoInsertar() {
                     className='md:col-span-2 mt-6 w-full p-3 bg-green-700 text-white disabled:bg-zinc-400 font-bold text-center rounded-md'
                 >
                     {pending
-                        ? <div><RefreshCcw className='inline animate-spin' /> Guardando...</div>
+                        ? <div><RefreshCw className='inline animate-spin' /> Guardando...</div>
                         : <div><Plus className='inline' /> Guardar</div>
 
                     }
