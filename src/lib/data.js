@@ -2,12 +2,11 @@
 import { pool } from '@/lib/mysql'
 
 
-export async function obtenerProductos({query, sort, page, per_page=5}) {
+export async function obtenerProductos({ query, sort, page, per_page = 5 }) {
     // Introducimos un retardo artificial
     // await new Promise(resolve => setTimeout(resolve, 1000))
 
     const like = '%' + query + '%'
-    // const limit = PER_PAGE
     const limit = per_page
     const offset = (page - 1) * per_page
 
