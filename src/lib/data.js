@@ -25,3 +25,22 @@ export async function obtenerProductos({ query, sort, page, per_page = 5 }) {
 
     return { productos, totalPages }
 }
+
+
+export async function obtenerProducto(id) {
+    try {
+        const sql = 'select * from productos where id = ?';
+        const values = [id]
+
+        const connection = await pool.getConnection();
+        const [[producto]] = await pool.execute(sql, values);
+        connection.release();
+
+        // console.log(producto);
+        return producto;
+    } catch (error) {
+        // console.log(error);  
+        return null;
+    }
+}
+

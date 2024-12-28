@@ -2,6 +2,7 @@
 import fs from 'node:fs'
 import mysql, { pool } from '@/lib/mysql'
 import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
 
 
 export async function nuevoProducto(prevState, formData) {
@@ -94,7 +95,8 @@ export async function eliminarProducto(prevState, formData) {
         connection.release();
 
         revalidatePath('/productos')
-        return { success: 'Eliminación exitosa' }
+        redirect('/productos')
+        // return { success: 'Eliminación exitosa' }
     } catch (error) {
         return { error: error.message }
     }

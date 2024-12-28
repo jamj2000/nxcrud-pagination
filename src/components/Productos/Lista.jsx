@@ -6,6 +6,7 @@ import ProductoModificar from '@/components/Producto/Modificar'
 import ProductoEliminar from '@/components/Producto/Eliminar'
 import { obtenerProductos } from '@/lib/data'
 import { Eye, Pencil, Trash } from 'lucide-react'
+import Link from 'next/link'
 
 
 
@@ -24,11 +25,9 @@ async function Productos({ query, sort, page, per_page }) {
             {productos.map(producto => (
                 <div key={producto.id} className='py-1 md:px-4 xl:px-8 odd:bg-slate-100 even:bg-slate-200 flex items-center justify-between'>
 
-                    <Modal
-                        texto={producto.nombre}
-                        className={'text-slate-700 hover:font-bold hover:cursor-pointer'}>
-                        <ProductoVer producto={producto} />
-                    </Modal>
+                    <Link href={`/productos/${producto.id}`} className={'text-slate-700 hover:font-bold hover:cursor-pointer'}>
+                        {producto.nombre}
+                    </Link>
 
                     <div className='flex gap-1'>
                         <Modal
