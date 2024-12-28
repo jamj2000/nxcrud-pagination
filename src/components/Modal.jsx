@@ -8,27 +8,23 @@ function Modal({ children, icono, texto, className }) {
 
     const dialogRef = useRef(null);
 
-    const openDialog = () => {
-        if (dialogRef.current) dialogRef.current.showModal();
-    };
+    const openDialog = () => dialogRef.current?.showModal();
 
-    const closeDialog = () => {
-        if (dialogRef.current) dialogRef.current.close();
-    };
+    const closeDialog = () => dialogRef.current?.close();
 
     const handleClickOutside = (e) => {
-        if (dialogRef.current)
-            dialogRef.current.addEventListener('click', function (e) {
-                const rect = dialogRef.current.getBoundingClientRect();
-                const isInDialog = (rect.top <= e.clientY
-                    && e.clientY <= rect.top + rect.height
-                    && rect.left <= e.clientX
-                    && e.clientX <= rect.left + rect.width);
-                if (!isInDialog) {
-                    dialogRef.current.close();
-                }
-            })
+        if (dialogRef.current) {
+            const rect = dialogRef.current.getBoundingClientRect();
+            const isInDialog = (rect.top <= e.clientY
+                && e.clientY <= rect.top + rect.height
+                && rect.left <= e.clientX
+                && e.clientX <= rect.left + rect.width);
+            if (!isInDialog) {
+                dialogRef.current.close();
+            }
+        }
     }
+
 
 
     return (
@@ -39,7 +35,7 @@ function Modal({ children, icono, texto, className }) {
 
 
             <dialog ref={dialogRef} onMouseDown={handleClickOutside}
-                className="backdrop:bg-black/50 backdrop:backdrop-blur-sm py-12 px-2 md:px-8 rounded-md outline-none">
+                className="backdrop:bg-black/50 backdrop:backdrop-blur-none w-[90%] lg:w-[60%] py-12 px-2 md:px-8 rounded-md outline-none">
 
                 {children}
 
